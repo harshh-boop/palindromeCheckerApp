@@ -1,26 +1,28 @@
-import java.util.Stack;
+import java.util.Deque;
+import java.util.ArrayDeque;
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String word = "radar";
+        String word = "level";
 
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Push all characters into stack
+        // Insert characters into deque
         for (int i = 0; i < word.length(); i++) {
-            stack.push(word.charAt(i));
+            deque.addLast(word.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Pop characters and compare
-        for (int i = 0; i < word.length(); i++) {
+        // Compare front and rear elements
+        while (deque.size() > 1) {
 
-            char poppedChar = stack.pop();
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
 
-            if (word.charAt(i) != poppedChar) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
