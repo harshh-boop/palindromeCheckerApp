@@ -1,8 +1,8 @@
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
-        // Hardcoded string
-        String word = "madam";
+        // Original string
+        String word = "racecar";
 
         // Reverse the string
         String reversed = "";
@@ -11,11 +11,15 @@ public class PalindromeCheckerApp {
             reversed = reversed + word.charAt(i);
         }
 
-        // Check if palindrome
+        // Compare original and reversed string
         if (word.equals(reversed)) {
-            System.out.println(word + " is a Palindrome.");
+            System.out.println("Original String : " + word);
+            System.out.println("Reversed String : " + reversed);
+            System.out.println("Result : It is a Palindrome.");
         } else {
-            System.out.println(word + " is NOT a Palindrome.");
+            System.out.println("Original String : " + word);
+            System.out.println("Reversed String : " + reversed);
+            System.out.println("Result : It is NOT a Palindrome.");
         }
     }
 }
