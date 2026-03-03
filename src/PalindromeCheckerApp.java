@@ -1,30 +1,36 @@
+import java.util.Deque;
+import java.util.ArrayDeque;
+
 public class PalindromeCheckerApp {
-
-    // Recursive method to check palindrome
-    public static boolean isPalindrome(String str, int start, int end) {
-        // Base condition: single char or crossed indices
-        if (start >= end) {
-            return true;
-        }
-
-        // If mismatch, not a palindrome
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call for next indices
-        return isPalindrome(str, start + 1, end - 1);
-    }
 
     public static void main(String[] args) {
 
-        String word = "racecar";
+        String word = "level";
 
-        boolean result = isPalindrome(word, 0, word.length() - 1);
+        Deque<Character> deque = new ArrayDeque<>();
 
+        // Insert characters into deque
+        for (int i = 0; i < word.length(); i++) {
+            deque.addLast(word.charAt(i));
+        }
+
+        boolean isPalindrome = true;
+
+        // Compare front and rear characters
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
+
+            if (front != rear) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Display result
         System.out.println("Original String : " + word);
 
-        if (result) {
+        if (isPalindrome) {
             System.out.println("Result : It is a Palindrome.");
         } else {
             System.out.println("Result : It is NOT a Palindrome.");
