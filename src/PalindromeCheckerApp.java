@@ -1,32 +1,31 @@
 public class PalindromeCheckerApp {
 
-    // Recursive method to check palindrome
-    public static boolean isPalindrome(String str, int start, int end) {
-
-        // Base condition: single character or crossed indices
-        if (start >= end) {
-            return true;
-        }
-
-        // If mismatch, return false
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call for inner substring
-        return isPalindrome(str, start + 1, end - 1);
-    }
-
     public static void main(String[] args) {
 
-        String word = "racecar";
+        String original = "A man, a plan, a canal, Panama";
 
-        boolean result = isPalindrome(word, 0, word.length() - 1);
+        // Normalize: lowercase and remove non-alphanumeric characters
+        String normalized = original.toLowerCase().replaceAll("[^a-z0-9]", "");
 
-        System.out.println("Original String : " + word);
+        int start = 0;
+        int end = normalized.length() - 1;
+        boolean isPalindrome = true;
 
-        if (result) {
-            System.out.println("Result : It is a Palindrome.");
+        // Two-pointer comparison
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+
+        // Display result
+        System.out.println("Original String : " + original);
+
+        if (isPalindrome) {
+            System.out.println("Result : It is a Palindrome (ignoring spaces and case).");
         } else {
             System.out.println("Result : It is NOT a Palindrome.");
         }
