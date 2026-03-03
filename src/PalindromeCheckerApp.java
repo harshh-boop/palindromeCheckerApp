@@ -1,31 +1,40 @@
+import java.util.Stack;
+
 public class PalindromeCheckerApp {
+
+    // Method to check palindrome using Stack
+    public boolean checkPalindrome(String word) {
+
+        Stack<Character> stack = new Stack<>();
+
+        // Push all characters to stack
+        for (int i = 0; i < word.length(); i++) {
+            stack.push(word.charAt(i));
+        }
+
+        // Compare popped characters with original
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) != stack.pop()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     public static void main(String[] args) {
 
-        String original = "A man, a plan, a canal, Panama";
+        String word = "level";
 
-        // Normalize: lowercase and remove non-alphanumeric characters
-        String normalized = original.toLowerCase().replaceAll("[^a-z0-9]", "");
+        // Create instance of PalindromeChecker
+        PalindromeCheckerApp checker = new PalindromeCheckerApp();
 
-        int start = 0;
-        int end = normalized.length() - 1;
-        boolean isPalindrome = true;
+        boolean result = checker.checkPalindrome(word);
 
-        // Two-pointer comparison
-        while (start < end) {
-            if (normalized.charAt(start) != normalized.charAt(end)) {
-                isPalindrome = false;
-                break;
-            }
-            start++;
-            end--;
-        }
+        System.out.println("Original String : " + word);
 
-        // Display result
-        System.out.println("Original String : " + original);
-
-        if (isPalindrome) {
-            System.out.println("Result : It is a Palindrome (ignoring spaces and case).");
+        if (result) {
+            System.out.println("Result : It is a Palindrome.");
         } else {
             System.out.println("Result : It is NOT a Palindrome.");
         }
